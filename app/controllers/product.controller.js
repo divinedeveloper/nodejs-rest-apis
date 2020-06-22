@@ -24,7 +24,6 @@ exports.create = async (req, res) => {
 
     // validate the parent category exists in db or not throw error if any parent is missing
     var categories = await Category.find({name: {$in : req.body.categories}}).exec();
-    console.log(categories)
 
     let categoryNames = categories.map(category => category.name);
 
@@ -60,8 +59,46 @@ exports.create = async (req, res) => {
 };
 
 // Retrieve and return all products by category from the database.
-exports.findAllByCategory = (req, res) => {
+exports.findAllByCategory = async (req, res) => {
+    var requestedCategory = req.query.category.trim();
+    var offset = parseInt(req.query.offset) || 0;
+    var limit = parseInt(req.query.limit) || 10;
 
+    var category = await Category.findOne({name: requestedCategory}).exec();
+    if(!category){
+        return res.status(404).send({
+            message: `Category ${requestedCategory} not found `
+        });
+    }
+    
+    var products =  await Product.aggregate([
+        {$sort: {name : 1}},
+
+        {$match:{categories: category.category}},
+
+        {$facet:{
+
+            "stage1" : [ {$group : {_id:null, count:{$sum:1}}} ],
+    
+            "stage2" : [ { "$skip": offset}, {"$limit": limit} ]
+    
+          }},
+    
+         {$unwind: "$stage1"},
+    
+          //output projection
+         {$project:{
+            count: "$stage1.count",
+            data: "$stage2"
+         }}
+
+    ]).exec();
+
+    if(Array.isArray(products) && products.length){
+        res.send(products);
+    }else{
+        res.json({"message": `No products found for category ${requestedCategory}`});
+    }
 };
 
 
