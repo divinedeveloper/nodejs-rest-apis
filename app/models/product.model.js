@@ -18,7 +18,8 @@ const ProductSchema = mongoose.Schema({
         trim: true
       },
       
-    // An embedded array of category paths for this product. A product can belong to one or more categories  
+    // An embedded array of category paths for this product. A product can belong to one or more categories 
+    // TODO : add index to categories for fast searching 
     categories: [String]
 }, {
     timestamps: true
