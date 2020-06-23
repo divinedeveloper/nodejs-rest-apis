@@ -7,7 +7,7 @@ exports.create = async (req, res) => {
     // Validate request
     if(!req.body.name || !req.body.price || !req.body.currency || !(Array.isArray(req.body.categories) && req.body.categories.length))  {
         return res.status(400).send({
-            message: "Product name, price, currency and categories can not be empty"
+            message: "Product name, price, currency and categories cannot be empty"
         });
     }
 
@@ -103,8 +103,109 @@ exports.findAllByCategory = async (req, res) => {
 
 
 // Update a product identified by the productId in the request
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
 
+    // Validate request
+    if(!req.body.name || !req.body.price || !req.body.currency)  {
+        return res.status(400).send({
+            message: "Product name, price, currency cannot be empty"
+        });
+    }
+
+    productId = req.params.productId.trim()
+    productName = req.body.name.trim()
+    currency = req.body.currency.trim()
+
+    var product = await Product.findById(productId).exec();
+    if(!product){
+        return res.status(404).send({
+            message: "Product not found"
+        });
+    }
+
+    var allCategories = []
+    var finalCategories = []
+    
+    if (Array.isArray(req.body.excludeCategories) && req.body.excludeCategories.length){
+        allCategories.push(...req.body.excludeCategories)
+    }
+
+    if (Array.isArray(req.body.includeCategories) && req.body.includeCategories.length){
+        allCategories.push(...req.body.includeCategories)
+        
+    }
+
+    if(allCategories.length){
+        // validate all the categories exists in db or not throw error if any category is missing
+        var categories = await Category.find({name: {$in : allCategories}}).exec();
+
+        let categoryNames = categories.map(category => category.name);
+
+        var categoriesNotFound = []
+
+        var includeCategoriesNotFound = req.body.includeCategories.filter(e => !categoryNames.includes(e))
+        categoriesNotFound.push(...includeCategoriesNotFound)
+
+        var excludeCategoriesNotFound = req.body.excludeCategories.filter(e => !categoryNames.includes(e))
+        categoriesNotFound.push(...excludeCategoriesNotFound)
+
+        if(Array.isArray(categoriesNotFound) && categoriesNotFound.length){
+            return res.status(404).send({
+                message: `Categories ${categoriesNotFound.toString()} not found`
+            });
+        }
+        var isCategoriesExcluded = false
+        // remove excluded categories from product
+        if(req.body.excludeCategories.length){
+            var excludedCategories =  categories.filter(function(cat) {
+                return req.body.excludeCategories.includes(cat.name);
+            });
+            let excludeCategoryPath = excludedCategories.map(cat => cat.category);
+
+            filteredCategories = product.categories.filter(e => !excludeCategoryPath.includes(e))
+
+            finalCategories.push(...filteredCategories)
+            isCategoriesExcluded = true
+
+        }
+
+        // add new included categories to product
+        if(req.body.includeCategories.length){
+            var includedCategories =  categories.filter(function(cat) {
+                return req.body.includeCategories.includes(cat.name);
+            });
+
+            let includeCategoryPath = includedCategories.map(cat => cat.category);
+
+            if(isCategoriesExcluded){
+                finalCategories.push(...includeCategoryPath)
+            }else{
+                finalCategories = product.categories.concat(includeCategoryPath)
+            }
+            
+        }
+    }
+    
+    //product udates
+    product.name = productName
+    product.price = req.body.price
+    product.currency = currency
+    if(finalCategories.length){
+        //remove duplicate paths if any
+        finalCategories = [...new Set(finalCategories)];
+
+        product.categories = finalCategories
+    }
+
+    // Save Product in the database
+    product.save()
+    .then(data => {
+        res.send(data);
+    }).catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while updating the product."
+        });
+    });
 };
 
 
