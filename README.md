@@ -67,6 +67,8 @@ http://localhost:3000
 
 ### API Testing using Postman Collection
 
+[Postman API Documentation](https://documenter.getpostman.com/view/8007701/Szzq5vfc?version=latest)
+
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/b30ba90a13f33122e3ae)
 
 ## Built With
