@@ -12,12 +12,14 @@ const CategorySchema = mongoose.Schema({
     parent: {
         type: String,
         required: true,
+        index: true,
         trim: true
       },
     //The current category path
     category: {
         type: String,
         required: true,
+        index: true,
         trim: true
       }
 }, {

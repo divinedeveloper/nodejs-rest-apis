@@ -19,8 +19,7 @@ const ProductSchema = mongoose.Schema({
       },
       
     // An embedded array of category paths for this product. A product can belong to one or more categories 
-    // TODO : add index to categories for fast searching 
-    categories: [String]
+    categories: { type: [String], index: true }
 }, {
     timestamps: true
 });
