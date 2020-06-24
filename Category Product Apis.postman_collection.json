@@ -1,0 +1,843 @@
+{
+	"info": {
+		"_postman_id": "86f467b9-ea8e-48e2-bcfa-6a7a2887d542",
+		"name": "Category Product Apis",
+		"description": "List of Apis to manage Category and Product apis.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add a category",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Electronics\",\n    \"parent\":  \"/\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"categories"
+					]
+				},
+				"description": "{\n    \"name\": \"Name of category\",\n    \"parent\":  \"For adding parent category, pass '/'. For adding child category, pass name of immediate parent category\"\n}\n\neg.\n1.Adding Parent category{\n    \"name\": \"Electronics\",\n    \"parent\":  \"/\"\n}\n2.Adding Child category{\n    \"name\": \"Cases\",\n    \"parent\":  \"Electronics\"\n}\n3.Adding Sub Child category{\n    \"name\": \"Big\",\n    \"parent\":  \"Cases\"\n}"
+			},
+			"response": [
+				{
+					"name": "Add a SUB CHILD category",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sneakers\",\n    \"parent\":  \"Footwear\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "199"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c7-3xkUsCCbFEz/XI5JFBFpbSyr+vs\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 22 Jun 2020 01:37:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"5ef00b56c3e2e157932bfddc\",\n    \"name\": \"Sneakers\",\n    \"parent\": \"/Men/Footwear\",\n    \"category\": \"/Men/Footwear/Sneakers\",\n    \"createdAt\": \"2020-06-22T01:37:26.383Z\",\n    \"updatedAt\": \"2020-06-22T01:37:26.383Z\",\n    \"__v\": 0\n}"
+				},
+				{
+					"name": "Add a Parent category",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Men\",\n    \"parent\":  \"/\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "164"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a4-quFwNISmQIWW8Wy9cr+u9KhSYkE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 22 Jun 2020 01:33:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"5ef00a7ec3e2e157932bfdda\",\n    \"name\": \"Men\",\n    \"parent\": \"/\",\n    \"category\": \"/Men\",\n    \"createdAt\": \"2020-06-22T01:33:50.472Z\",\n    \"updatedAt\": \"2020-06-22T01:33:50.472Z\",\n    \"__v\": 0\n}"
+				},
+				{
+					"name": "Add a CHILD category",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Footwear\",\n    \"parent\":  \"Men\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "181"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b5-NB9m9Y7rPVj3vjpb5Nk2mjcYPgY\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 22 Jun 2020 01:35:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\": \"5ef00ad6c3e2e157932bfddb\",\n    \"name\": \"Footwear\",\n    \"parent\": \"/Men\",\n    \"category\": \"/Men/Footwear\",\n    \"createdAt\": \"2020-06-22T01:35:18.532Z\",\n    \"updatedAt\": \"2020-06-22T01:35:18.532Z\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Add a Product mapped to category or categories",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Microprocessor\",\n    \"price\":  250,\n    \"currency\": \"INR\",\n    \"categories\":[\"Embedded\",\"Controllers\"]\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"products"
+					]
+				},
+				"description": "Create a new product with its details mapped to a single cateogry or list of categories\n\n{\n    \"name\": \"name of product\",\n    \"price\":  125,\n    \"currency\": \"INR\",\n    \"categories\":[\"Name of immediate parent category\"]\n}\n\neg. {\n    \"name\": \"Arduino\",\n    \"price\":  125,\n    \"currency\": \"INR\",\n    \"categories\":[\"Embedded\"]\n}"
+			},
+			"response": [
+				{
+					"name": "Add a Product mapped to a category ",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Arduino\",\n    \"price\":  125,\n    \"currency\": \"INR\",\n    \"categories\":[\"Embedded\"]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "205"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"cd-zWBBgKt5qbwq+ce1dshGRF1aQEE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 22 Jun 2020 18:17:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"categories\": [\n        \"/Electronics/Embedded\"\n    ],\n    \"_id\": \"5ef0f5c3e9140c3564e76050\",\n    \"name\": \"Arduino\",\n    \"price\": 125,\n    \"currency\": \"INR\",\n    \"createdAt\": \"2020-06-22T18:17:39.198Z\",\n    \"updatedAt\": \"2020-06-22T18:17:39.198Z\",\n    \"__v\": 0\n}"
+				},
+				{
+					"name": "Add a Product mapped to multiple categories",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Microprocessor\",\n    \"price\":  250,\n    \"currency\": \"INR\",\n    \"categories\":[\"Embedded\",\"Controllers\"]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "239"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ef-oJEjGwynsP3sTxG8Uefets+bEZk\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 22 Jun 2020 18:24:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"categories\": [\n        \"/Electronics/Controllers\",\n        \"/Electronics/Embedded\"\n    ],\n    \"_id\": \"5ef0f770e9140c3564e76052\",\n    \"name\": \"Microprocessor\",\n    \"price\": 250,\n    \"currency\": \"INR\",\n    \"createdAt\": \"2020-06-22T18:24:48.499Z\",\n    \"updatedAt\": \"2020-06-22T18:24:48.499Z\",\n    \"__v\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "Update a Product mapped to category or categories",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"ducati\",\n    \"price\":  1100,\n    \"currency\": \"INR\",\n    \"includeCategories\":[\"Sneakers\"],\n    \"excludeCategories\":[\"Embedded\"]\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/products/5ef0fc733aae714094bc7155",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"products",
+						"5ef0fc733aae714094bc7155"
+					]
+				},
+				"description": "Update a product with its details mapped to a single cateogry or list of categories\n\n{\n    \"name\": \"name of product\",\n    \"price\":  125,\n    \"currency\": \"INR\",\n    \"includeCategories\":[\"Names of immediate parent category comma separated to map to product\"],\n    \"excludeCategories\":[\"Names of immediate parent category comma separated to unmap from product\"]\n}\n\neg.{\n    \"name\": \"ducati\",\n    \"price\":  1100,\n    \"currency\": \"INR\",\n    \"includeCategories\":[\"Sneakers\"],\n    \"excludeCategories\":[\"Embedded\"]\n}"
+			},
+			"response": [
+				{
+					"name": "Add a Product mapped to multiple categories",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Microprocessor\",\n    \"price\":  250,\n    \"currency\": \"INR\",\n    \"categories\":[\"Embedded\",\"Controllers\"]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "239"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ef-oJEjGwynsP3sTxG8Uefets+bEZk\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 22 Jun 2020 18:24:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"categories\": [\n        \"/Electronics/Controllers\",\n        \"/Electronics/Embedded\"\n    ],\n    \"_id\": \"5ef0f770e9140c3564e76052\",\n    \"name\": \"Microprocessor\",\n    \"price\": 250,\n    \"currency\": \"INR\",\n    \"createdAt\": \"2020-06-22T18:24:48.499Z\",\n    \"updatedAt\": \"2020-06-22T18:24:48.499Z\",\n    \"__v\": 0\n}"
+				},
+				{
+					"name": "Add a Product mapped to a category ",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Arduino\",\n    \"price\":  125,\n    \"currency\": \"INR\",\n    \"categories\":[\"Embedded\"]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "205"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"cd-zWBBgKt5qbwq+ce1dshGRF1aQEE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 22 Jun 2020 18:17:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"categories\": [\n        \"/Electronics/Embedded\"\n    ],\n    \"_id\": \"5ef0f5c3e9140c3564e76050\",\n    \"name\": \"Arduino\",\n    \"price\": 125,\n    \"currency\": \"INR\",\n    \"createdAt\": \"2020-06-22T18:17:39.198Z\",\n    \"updatedAt\": \"2020-06-22T18:17:39.198Z\",\n    \"__v\": 0\n}"
+				},
+				{
+					"name": "Update a Product mapped to category or categories",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ducati\",\n    \"price\":  1100,\n    \"currency\": \"INR\",\n    \"includeCategories\":[\"Sneakers\"],\n    \"excludeCategories\":[\"Embedded\"]\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/products/5ef0fc733aae714094bc7155",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products",
+								"5ef0fc733aae714094bc7155"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "206"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ce-oirSoldNV/dLxjtv2eIT2o4uITI\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 23 Jun 2020 14:50:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"categories\": [\n        \"/Men/Footwear/Sneakers\"\n    ],\n    \"_id\": \"5ef0fc733aae714094bc7155\",\n    \"name\": \"ducati\",\n    \"price\": 1100,\n    \"currency\": \"INR\",\n    \"createdAt\": \"2020-06-22T18:46:11.061Z\",\n    \"updatedAt\": \"2020-06-23T14:50:19.528Z\",\n    \"__v\": 8\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all products by a category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/products?category=Embedded&offset=0&limit=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "Embedded"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all products by a category",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/products?category=Embedded&offset=0&limit=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Embedded"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "468"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1d4-o34ovG6923EHrZQlR0lJNN58/Bc\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 22 Jun 2020 19:51:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"count\": 2,\n        \"data\": [\n            {\n                \"_id\": \"5ef0f5c3e9140c3564e76050\",\n                \"categories\": [\n                    \"/Electronics/Embedded\"\n                ],\n                \"name\": \"Arduino\",\n                \"price\": 125,\n                \"currency\": \"INR\",\n                \"createdAt\": \"2020-06-22T18:17:39.198Z\",\n                \"updatedAt\": \"2020-06-22T18:17:39.198Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5ef0f770e9140c3564e76052\",\n                \"categories\": [\n                    \"/Electronics/Controllers\",\n                    \"/Electronics/Embedded\"\n                ],\n                \"name\": \"Microprocessor\",\n                \"price\": 250,\n                \"currency\": \"INR\",\n                \"createdAt\": \"2020-06-22T18:24:48.499Z\",\n                \"updatedAt\": \"2020-06-22T18:24:48.499Z\",\n                \"__v\": 0\n            }\n        ]\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get all categories with all its child categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all categories with all its child categories",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1811"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"713-2GgTFzHTgS7UYSkOF1ocK7Khs+g\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 24 Jun 2020 12:27:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"5ef00886c3e2e157932bfdd4\",\n        \"name\": \"Electronics\",\n        \"parent\": \"/\",\n        \"category\": \"/Electronics\",\n        \"createdAt\": \"2020-06-22T01:25:26.491Z\",\n        \"updatedAt\": \"2020-06-22T01:25:26.491Z\",\n        \"__v\": 0,\n        \"child_categories\": [\n            {\n                \"_id\": \"5ef00968c3e2e157932bfdd6\",\n                \"name\": \"Controllers\",\n                \"parent\": \"/Electronics\",\n                \"category\": \"/Electronics/Controllers\",\n                \"createdAt\": \"2020-06-22T01:29:12.907Z\",\n                \"updatedAt\": \"2020-06-22T01:29:12.907Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5ef008c0c3e2e157932bfdd5\",\n                \"name\": \"Embedded\",\n                \"parent\": \"/Electronics\",\n                \"category\": \"/Electronics/Embedded\",\n                \"createdAt\": \"2020-06-22T01:26:24.777Z\",\n                \"updatedAt\": \"2020-06-22T01:26:24.777Z\",\n                \"__v\": 0\n            },\n            {\n                \"_id\": \"5ef00975c3e2e157932bfdd7\",\n                \"name\": \"Cases\",\n                \"parent\": \"/Electronics\",\n                \"category\": \"/Electronics/Cases\",\n                \"createdAt\": \"2020-06-22T01:29:25.871Z\",\n                \"updatedAt\": \"2020-06-22T01:29:25.871Z\",\n                \"__v\": 0,\n                \"child_categories\": [\n                    {\n                        \"_id\": \"5ef009e8c3e2e157932bfdd9\",\n                        \"name\": \"Small\",\n                        \"parent\": \"/Electronics/Cases\",\n                        \"category\": \"/Electronics/Cases/Small\",\n                        \"createdAt\": \"2020-06-22T01:31:20.724Z\",\n                        \"updatedAt\": \"2020-06-22T01:31:20.724Z\",\n                        \"__v\": 0\n                    },\n                    {\n                        \"_id\": \"5ef009a5c3e2e157932bfdd8\",\n                        \"name\": \"Big\",\n                        \"parent\": \"/Electronics/Cases\",\n                        \"category\": \"/Electronics/Cases/Big\",\n                        \"createdAt\": \"2020-06-22T01:30:13.895Z\",\n                        \"updatedAt\": \"2020-06-22T01:30:13.895Z\",\n                        \"__v\": 0\n                    }\n                ]\n            }\n        ]\n    },\n    {\n        \"_id\": \"5ef00a7ec3e2e157932bfdda\",\n        \"name\": \"Men\",\n        \"parent\": \"/\",\n        \"category\": \"/Men\",\n        \"createdAt\": \"2020-06-22T01:33:50.472Z\",\n        \"updatedAt\": \"2020-06-22T01:33:50.472Z\",\n        \"__v\": 0,\n        \"child_categories\": [\n            {\n                \"_id\": \"5ef00ad6c3e2e157932bfddb\",\n                \"name\": \"Footwear\",\n                \"parent\": \"/Men\",\n                \"category\": \"/Men/Footwear\",\n                \"createdAt\": \"2020-06-22T01:35:18.532Z\",\n                \"updatedAt\": \"2020-06-22T01:35:18.532Z\",\n                \"__v\": 0,\n                \"child_categories\": [\n                    {\n                        \"_id\": \"5ef00b56c3e2e157932bfddc\",\n                        \"name\": \"Sneakers\",\n                        \"parent\": \"/Men/Footwear\",\n                        \"category\": \"/Men/Footwear/Sneakers\",\n                        \"createdAt\": \"2020-06-22T01:37:26.383Z\",\n                        \"updatedAt\": \"2020-06-22T01:37:26.383Z\",\n                        \"__v\": 0\n                    }\n                ]\n            }\n        ]\n    }\n]"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}
